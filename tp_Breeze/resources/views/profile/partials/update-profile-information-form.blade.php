@@ -22,6 +22,32 @@
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+        <div>
+            <x-input-label for="pseudo" value="Pseudo" />
+            <x-text-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo" :value="old('pseudo', $user->pseudo)" required />
+            <x-input-error :messages="$errors->get('pseudo')" class="mt-2" />
+        </div>
+        <div>
+            <x-input-label for="ville" value="Ville" />
+            <x-text-input id="ville" class="block mt-1 w-full" type="text" name="ville" :value="old('ville', $user->personne->ville ?? '')" />
+            <x-input-error :messages="$errors->get('ville')" class="mt-2" />
+        </div>
+        <div>
+            <x-input-label for="date_naissance" value="Date de naissance" />
+            <x-text-input id="date_naissance" class="block mt-1 w-full" type="date" name="date_naissance" :value="old('date_naissance', $user->personne->date_naissance ?? '')" />
+            <x-input-error :messages="$errors->get('date_naissance')" class="mt-2" />
+        </div>
+        <div>
+            <x-input-label for="genre" value="Genre" />
+            <select id="genre" name="genre" class="block mt-1 w-full" required>
+                <option value="">Sélectionnez votre genre</option>
+                <option value="homme" {{ old('genre', $user->personne->genre ?? '') === 'homme' ? 'selected' : '' }}>Homme</option>
+                <option value="femme" {{ old('genre', $user->personne->genre ?? '') === 'femme' ? 'selected' : '' }}>Femme</option>
+                <option value="autre" {{ old('genre', $user->personne->genre ?? '') === 'autre' ? 'selected' : '' }}>dauphin</option>
+                <option value="autre" {{ old('genre', $user->personne->genre ?? '') === 'autre' ? 'selected' : '' }}>camion</option>
+            </select>
+            <x-input-error :messages="$errors->get('genre')" class="mt-2" />
+        </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />

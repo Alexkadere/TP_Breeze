@@ -9,11 +9,43 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Pseudo -->
+        <div class="mt-4">
+            <x-input-label for="pseudo" value="Pseudo" />
+            <x-text-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo" :value="old('pseudo')" required />
+            <x-input-error :messages="$errors->get('pseudo')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Ville -->
+        <div class="mt-4">
+            <x-input-label for="ville" value="Ville" />
+            <x-text-input id="ville" class="block mt-1 w-full" type="text" name="ville" :value="old('ville')" required />
+            <x-input-error :messages="$errors->get('ville')" class="mt-2" />
+        </div>
+        <!-- Date de naissance -->
+        <div class="mt-4">
+            <x-input-label for="date_naissance" value="Date de naissance" />
+            <x-text-input id="date_naissance" class="block mt-1 w-full" type="date" name="date_naissance" :value="old('date_naissance')" required />
+            <x-input-error :messages="$errors->get('date_naissance')" class="mt-2" />
+        </div>
+        <!-- Genre -->
+        <div class="mt-4">
+            <x-input-label for="genre" value="Genre" />
+            <select id="genre" name="genre" class="block mt-1 w-full" required>
+                <option value="">Sélectionnez votre genre</option>
+                <option value="homme" {{ old('genre') === 'homme' ? 'selected' : '' }}>Homme</option>
+                <option value="femme" {{ old('genre') === 'femme' ? 'selected' : '' }}>Femme</option>
+                <option value="autre" {{ old('genre') === 'dauphin' ? 'selected' : '' }}>dauphin</option>
+                <option value="autre" {{ old('genre') === 'camion' ? 'selected' : '' }}>camion</option>
+            </select>
+            <x-input-error :messages="$errors->get('genre')" class="mt-2" />
         </div>
 
         <!-- Password -->

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use App\Models\Personne;
 
 class RegisteredUserController extends Controller
 {
@@ -34,12 +35,22 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'pseudo' => ['required', 'string', 'max:255'],
+            'ville' => ['required', 'string', 'max:255'],
+            'date_naissance' => ['required', 'date'],
+            'genre' => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+        Personne::create([
+            'ville' => $request->ville,
+            'date_naissance' => $request->date_naissance,
+            'genre' => $request->genre,
+            'user_id' => $user->id,
         ]);
 
         event(new Registered($user));
