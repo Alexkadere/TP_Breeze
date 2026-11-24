@@ -8,10 +8,10 @@ class YoloController extends Controller
 {
     public function publicView()
     {
-        return view('welcome');
+        return view('yolo.publicView');
     }
     public function privateView()
     {
-        return view('dashboard');
+        return view('yolo.privateView');
     }
 }
